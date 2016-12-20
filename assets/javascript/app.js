@@ -1,50 +1,49 @@
-
-
-
 var topics = ["beach", "dolphins", "seagulls", "sunsets", "surfing"]; 
 
 
 $("button").on("click", function() {
 
 var gif = $(this).attr("data-name"); 
-var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=dc6zaTOxFJmzC&limit=10";
+var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC&limit=10";
 
 $.ajax({ 
 	url: queryURL, 
 	method: 'GET'
 }).done(function(response) {
-        console.log(response);
-        console.log(queryURL);
 
-        var results = response.data;
+	console.log(response);
+	console.log(queryURL);
 
-        for (var i = 0; i < results.length; i++) {
+	var
 
-        	var gifDiv = $("<div>"); 
-        	var p = $("<p>").text("Rating: " + results[i].rating);
-        	var img = $("<img>");
-        	img.attr("src", results[i].images.fixed_height.url); 
-        	gifDiv.append(p);
-        	gifDiv.append(img);
+	var imageUrl = response.data.url; 
 
-        }
-
+	var showGif = $("<img>").attr("src", imageUrl); 
+	
+	var gifDiv = $("<div>").attr("class", "gif-div"); 
+	
+	var p = $("<p>").text("Rating: " + response.data.rating);
+	
+		showGif.append("#gifs-view");
+	
+		p.append("#gifs-view");
         
       });
 
+
+$("#buttons-view").on('click', function() {
+	event.preventDefault();
+
+	var newButton = $("#topic-input").val();
+
+	topics.push(newButton);
+
 });
 
-// function printUserTopic() {
-//         // empty div first 
-//         $("#buttons-view").empty();
-//         // loops through topics
-//         for (var i = 0; i < topics.length; i++) {
-//           // creates a new button per topic
-//           var newButton = $("<button>").addClass("gif").attr("data-name", topics[i]).text(topics[i]);
-//           // add to page
-//           $("#buttons-view").append(newButton);
-//         }
-// }
+
+});
+
+
 
 
 
