@@ -10,11 +10,8 @@ $(".gifBtn").on("click", function() {
 
  	//capture data-name for whatever is clicked 
 	var gif = $(this).attr("data-name"); 
+	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=dc6zaTOxFJmzC";
 	
-	// queryURL
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + gif+ "&api_key=dc6zaTOxFJmzC";
-	// "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + gif;
-
 	$.ajax({ 
 		url: queryURL, 
 		method: 'GET'
@@ -54,30 +51,29 @@ $(".gifBtn").on("click", function() {
 	});
 });
 
+// function 2
+$("#add-gif").on('click', function userGen(){
+	event.preventDefault();
 
-// // function 2
-// // creating a new button from user's form input
-// function userGenButton(){
+	var userInput = $("#topic-input").val().trim();
+	console.log(userInput);
+	topics.push(userInput); 
 
-// 	//empty div
-// 	$('#buttons-view').empty();
+	var newButton = $("<button>");
+	newButton.addClass('gifBtn').attr('data-name', userInput).text(userInput); 
 
-// 	// creates a new button with the input as text and data-name
-// 	var newButton = $("<button>").addClass("gif").text("#topic-input").attr('data-name', "#topic-input");
 
-// 	//append new button to html buttons div
-// 	$("#buttons-view").append(newButton);
+	var addButtonsHere = $("<div class = addButtonsHere>");
 
-// // function 3
+	addButtonsHere.append(newButton);
+	$("#buttons-view").append(addButtonsHere);
 
-// $("#add-gif").on('click', function (event) {
-// 	event.preventDefault();
+});
 
-// 	var newTopic = $("#topic-input").val().trim();
 
 // 	console.log(newTopic);
 
-// // });
+// });
 
 
 
