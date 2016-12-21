@@ -2,11 +2,11 @@
 // creating an inital array of topics
 var topics = ["beach", "dolphins", "seagulls", "sunsets", "surfing"]; 
 
-// function 1
+// function 1 displays gifs 
 
 //when anything with a class of gif is pressed, do this:
 
-$(".gifBtn").on("click", function() {
+$(".gifBtn").on("click", function searchGifs() {
 
  	//capture data-name for whatever is clicked 
 	var gif = $(this).attr("data-name"); 
@@ -29,16 +29,15 @@ $(".gifBtn").on("click", function() {
 				var gifsHere = $("<div id = 'gifsHere'>");
 				//shortcut for gif's rating
 				var rating = results[i].rating; 
-				console.log(results[i].rating);
+				// console.log(results[i].rating);
 				//designated line to list rating 
 				var gifInfo = $("<p>").text("Rating: " + rating);
-
-				var gifImage = $("<img>").attr("src", animated).attr("data-animate", animated);
-				
+				//saves path to image
 				var animated = results[i].images.fixed_height.url;
-		
+				// links to image url to display gif
+				var gifImage = $("<img>").attr("src", animated).attr("data-animate", animated);
 		// var still = results[i].images.original_still;
-		// 	var animated = results[i].images.original.url;
+		// var animated = results[i].images.original.url;
 			
 			//put rating info in designated gif div 
 			gifsHere.prepend(gifInfo);
@@ -51,29 +50,29 @@ $(".gifBtn").on("click", function() {
 	});
 });
 
-// function 2
+// function 2 creates button based on user input, adds to array 
+// clicking submit button starts function
 $("#add-gif").on('click', function userGen(){
 	event.preventDefault();
 
+	//saves users input as variable 
 	var userInput = $("#topic-input").val().trim();
 	console.log(userInput);
 	topics.push(userInput); 
 
+	//creates new button with info from users input
 	var newButton = $("<button>");
 	newButton.addClass('gifBtn').attr('data-name', userInput).text(userInput); 
 
+	//appends new button to div 
+	$("#buttons-view").append(newButton);
 
-	var addButtonsHere = $("<div class = addButtonsHere>");
-
-	addButtonsHere.append(newButton);
-	$("#buttons-view").append(addButtonsHere);
+$(document).on('click', "gifBtn", function(){
+		response();
+	});
 
 });
 
-
-// 	console.log(newTopic);
-
-// });
 
 
 
