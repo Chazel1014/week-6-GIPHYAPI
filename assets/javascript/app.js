@@ -26,7 +26,7 @@ $(".gifBtn").on("click", function searchGifs() {
 			//for loop to run through the data
 			for (var i = 0; i < results.length; i++){
 				//designated div for gifs
-				var gifsHere = $("<div id = 'gifsHere'>");
+				var gifsHere = $("<div class = 'col s12 m6 l4'>");
 				//shortcut for gif's rating
 				var rating = results[i].rating; 
 				// console.log(results[i].rating);
